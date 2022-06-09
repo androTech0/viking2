@@ -40,7 +40,9 @@ public class ResouresePosition : MonoBehaviour
 
         if (rowResourses.Count > 0 )
         {
+            Debug.Log("Miner Move");
             if (rowResourses[index].transform.gameObject.active) {
+                
                 speed = 3f;
                 transform.position = Vector3.MoveTowards(transform.position, rowResourses[index].transform.position, speed * Time.deltaTime);
                 if (!isMinning)

@@ -8,6 +8,7 @@ public class moveCitizen : MonoBehaviour
     public bool access,isBusy = false;
     int last = 0;
     int ran = 1;
+    public string characterType;
 
 
     // Update is called once per frame
@@ -46,7 +47,7 @@ public class moveCitizen : MonoBehaviour
 
     private void OnCollisionStay(Collision collision)
     {
-                if (!isBusy)
+        if (!isBusy)
         {
             if (collision.gameObject.tag == "citizenStation")
             {
@@ -58,10 +59,34 @@ public class moveCitizen : MonoBehaviour
 
         if (collision.gameObject.tag == "WeapansMaker")
         {
-            print("OnTriggerEnter");
+            switch (characterType) {
+                case "gaurd1":
+                    GameObject.Find("EventSystem").GetComponent<UiManager>().instantiateGuard();
+                    Destroy(gameObject);
+                    break;
+                case "gaurd2":
+                    GameObject.Find("EventSystem").GetComponent<UiManager>().instantiateGuard2();
+                    Destroy(gameObject);
+                    break;
+                case "MinerRedCrystal":
+                    GameObject.Find("EventSystem").GetComponent<UiManager>().instantiateCrystalRed();
+                    Destroy(gameObject);
+                    break;
+                case "MinerBlueCrystal":
+                    GameObject.Find("EventSystem").GetComponent<UiManager>().instantiateCrystalBlue();
+                    Destroy(gameObject);
+                    break;
+                case "MinerIron":
+                    GameObject.Find("EventSystem").GetComponent<UiManager>().instantiateIron();
+                    Destroy(gameObject);
+                    break;
+                case "MinerGold":
+                    GameObject.Find("EventSystem").GetComponent<UiManager>().instantiateGold();
+                    Destroy(gameObject);
+                    break;
+            }
 
-            GameObject.Find("EventSystem").GetComponent<UiManager>().instantiateGuard();
-            Destroy(gameObject);
+            
         }
     }
 
