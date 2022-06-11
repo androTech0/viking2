@@ -13,6 +13,10 @@ public class UiManager : MonoBehaviour
 
     public GameObject pathss;
 
+    [SerializeField]
+    Transform location;
+
+
     public List<GameObject> EnemeisArr, GaurdsArr,citizensArr = new List<GameObject>();
 
     public List<Transform> RedResourses, BlueResourses, IronResourses, GoldResourses = new List<Transform>();
@@ -24,7 +28,7 @@ public class UiManager : MonoBehaviour
     float pickaxeCounter = 2f;
 
     /*
-     * 
+    
     0 - minerCrystalRed,
     1 - minerCrystalBlue,
     2 - minerIron,
@@ -50,6 +54,7 @@ public class UiManager : MonoBehaviour
 
 
     */
+
     [SerializeField]
     Text t1,t2,t3, t4, t5,t6,t7,t8;
 
@@ -64,8 +69,8 @@ public class UiManager : MonoBehaviour
         PlayerPrefs.SetInt("Swords",0);
         PlayerPrefs.SetInt("Shields",0);
         PlayerPrefs.SetInt("Hammers",0);
-        PlayerPrefs.SetInt("Axe", 2);
-        PlayerPrefs.SetInt("Pickaxe", 2);
+        PlayerPrefs.SetInt("Axe", 200);
+        PlayerPrefs.SetInt("Pickaxe", 200);
     }
 
     void LateUpdate()
@@ -76,66 +81,8 @@ public class UiManager : MonoBehaviour
 
 
 
-    #region instantiate fighters
-    public void instantiateEnemy()
-    {/*
-        if (Items[11].active)
-        {
-            */
-        GameObject gamobj =  Instantiate(Items[7],new Vector3(Items[7].transform.position.x + increase1, Items[7].transform.position.y, Items[7].transform.position.z),Items[7].transform.rotation);
-        gamobj.transform.parent = GameObject.Find("Enemies").transform;
-        EnemeisArr.Add(gamobj);
-        //hideEnemiesMenu();
-        increase1 += 1.3f;
-            /*
-        }
-        else
-        {
-            SSTools.ShowMessage("you must build a Hospital before fighting", SSTools.Position.top, SSTools.Time.threeSecond);
+    #region UI onClick
 
-        }*/
-        
-    }
-
-    public void citizenGaurd1()
-    {
-        if (citizensArr.Count > 0)
-        {
-
-            if (PlayerPrefs.GetInt("Swords") > 0 && PlayerPrefs.GetInt("Shields") > 0)
-            {
-                citizensArr[0].GetComponent<moveCitizen>().isBusy = true;
-                citizensArr[0].GetComponent<moveCitizen>().characterType = "gaurd2";
-                citizensArr.RemoveAt(0);
-            }
-
-            else
-            {
-                SSTools.ShowMessage("Need Weapans !!", SSTools.Position.top, SSTools.Time.threeSecond);
-
-            }
-        }
-    }
-
-    public void citizenGaurd2()
-    {
-        if (citizensArr.Count > 0)
-        {
-
-            if (PlayerPrefs.GetInt("Hammers") > 0 && PlayerPrefs.GetInt("Shields") > 0)
-            {
-                citizensArr[0].GetComponent<moveCitizen>().isBusy = true;
-                citizensArr[0].GetComponent<moveCitizen>().characterType = "gaurd2";
-                citizensArr.RemoveAt(0);
-            }
-
-            else
-            {
-                SSTools.ShowMessage("Need Weapans !!", SSTools.Position.top, SSTools.Time.threeSecond);
-
-            }
-        }
-    }
 
     public void citizenMinerRedCrystal()
     {
@@ -217,6 +164,265 @@ public class UiManager : MonoBehaviour
         }
     }
 
+    public void citizenTreeCutter()
+    {
+        if (citizensArr.Count > 0)
+        {
+
+            if (PlayerPrefs.GetInt("Pickaxe") > 0)
+            {
+                citizensArr[0].GetComponent<moveCitizen>().isBusy = true;
+                citizensArr[0].GetComponent<moveCitizen>().characterType = "TreeCutter";
+                citizensArr.RemoveAt(0);
+            }
+
+            else
+            {
+                SSTools.ShowMessage("Need Pickaxe !!", SSTools.Position.top, SSTools.Time.threeSecond);
+
+            }
+        }
+    }
+
+    public void citizenGaurd1()
+    {
+        if (citizensArr.Count > 0)
+        {
+
+            if (PlayerPrefs.GetInt("Swords") > 0 && PlayerPrefs.GetInt("Shields") > 0)
+            {
+                citizensArr[0].GetComponent<moveCitizen>().isBusy = true;
+                citizensArr[0].GetComponent<moveCitizen>().characterType = "gaurd2";
+                citizensArr.RemoveAt(0);
+            }
+
+            else
+            {
+                SSTools.ShowMessage("Need Weapans !!", SSTools.Position.top, SSTools.Time.threeSecond);
+
+            }
+        }
+    }
+
+    public void citizenGaurd2()
+    {
+        if (citizensArr.Count > 0)
+        {
+
+            if (PlayerPrefs.GetInt("Hammers") > 0 && PlayerPrefs.GetInt("Shields") > 0)
+            {
+                citizensArr[0].GetComponent<moveCitizen>().isBusy = true;
+                citizensArr[0].GetComponent<moveCitizen>().characterType = "gaurd2";
+                citizensArr.RemoveAt(0);
+            }
+
+            else
+            {
+                SSTools.ShowMessage("Need Weapans !!", SSTools.Position.top, SSTools.Time.threeSecond);
+
+            }
+        }
+    }
+
+    public void citizenCollectorRed()
+    {
+        if (citizensArr.Count > 0)
+        {
+
+            if (PlayerPrefs.GetInt("Hammers") > 0 && PlayerPrefs.GetInt("Shields") > 0)
+            {
+                citizensArr[0].GetComponent<moveCitizen>().isBusy = true;
+                citizensArr[0].GetComponent<moveCitizen>().characterType = "RedCollector";
+                citizensArr.RemoveAt(0);
+            }
+
+            else
+            {
+                SSTools.ShowMessage("Need Weapans !!", SSTools.Position.top, SSTools.Time.threeSecond);
+
+            }
+        }
+        else
+        {
+            SSTools.ShowMessage("No citizen !!", SSTools.Position.top, SSTools.Time.threeSecond);
+
+        }
+    }
+
+    public void citizenCollectorBlue()
+    {
+        if (citizensArr.Count > 0)
+        {
+
+            if (PlayerPrefs.GetInt("Hammers") > 0 && PlayerPrefs.GetInt("Shields") > 0)
+            {
+                citizensArr[0].GetComponent<moveCitizen>().isBusy = true;
+                citizensArr[0].GetComponent<moveCitizen>().characterType = "BlueCollector";
+                citizensArr.RemoveAt(0);
+            }
+
+            else
+            {
+                SSTools.ShowMessage("Need Weapans !!", SSTools.Position.top, SSTools.Time.threeSecond);
+
+            }
+        }
+        else
+        {
+            SSTools.ShowMessage("No citizen !!", SSTools.Position.top, SSTools.Time.threeSecond);
+
+        }
+    }
+
+    public void citizenCollectorIron()
+    {
+        if (citizensArr.Count > 0)
+        {
+
+            if (PlayerPrefs.GetInt("Hammers") > 0 && PlayerPrefs.GetInt("Shields") > 0)
+            {
+                citizensArr[0].GetComponent<moveCitizen>().isBusy = true;
+                citizensArr[0].GetComponent<moveCitizen>().characterType = "IronCollector";
+                citizensArr.RemoveAt(0);
+            }
+
+            else
+            {
+                SSTools.ShowMessage("Need Weapans !!", SSTools.Position.top, SSTools.Time.threeSecond);
+
+            }
+        }
+        else
+        {
+            SSTools.ShowMessage("No citizen !!", SSTools.Position.top, SSTools.Time.threeSecond);
+
+        }
+    }
+
+    public void citizenCollectorGold()
+    {
+        if (citizensArr.Count > 0)
+        {
+
+            if (PlayerPrefs.GetInt("Hammers") > 0 && PlayerPrefs.GetInt("Shields") > 0)
+            {
+                citizensArr[0].GetComponent<moveCitizen>().isBusy = true;
+                citizensArr[0].GetComponent<moveCitizen>().characterType = "GoldCollector";
+                citizensArr.RemoveAt(0);
+            }
+
+            else
+            {
+                SSTools.ShowMessage("Need Weapans !!", SSTools.Position.top, SSTools.Time.threeSecond);
+
+            }
+        }
+        else
+        {
+            SSTools.ShowMessage("No citizen !!", SSTools.Position.top, SSTools.Time.threeSecond);
+
+        }
+    }
+
+    public void citizenCollectorTree()
+    {
+        if (citizensArr.Count > 0)
+        {
+
+            if (PlayerPrefs.GetInt("Hammers") > 0 && PlayerPrefs.GetInt("Shields") > 0)
+            {
+                citizensArr[0].GetComponent<moveCitizen>().isBusy = true;
+                citizensArr[0].GetComponent<moveCitizen>().characterType = "TreeCollector";
+                citizensArr.RemoveAt(0);
+            }
+
+            else
+            {
+                SSTools.ShowMessage("Need Weapans !!", SSTools.Position.top, SSTools.Time.threeSecond);
+
+            }
+        }
+        else
+        {
+            SSTools.ShowMessage("No citizen !!", SSTools.Position.top, SSTools.Time.threeSecond);
+
+        }
+    }
+
+    public void cccc()
+    {
+
+    }
+
+    #endregion
+      
+
+
+    #region instantiate
+
+
+    public void instantiateCrystalRed()
+    {
+        Items[0].SetActive(true);
+        //GameObject gamobj = Instantiate(Items[0], new Vector3(Items[0].transform.position.x + increase2, Items[0].transform.position.y, Items[0].transform.position.z), Items[0].transform.rotation);
+        //gamobj.transform.parent = GameObject.Find("Miners").transform;
+        //gamobj.GetComponent<ResouresePosition>().rowResourses = RedResourses;
+        //GaurdsArr.Add(gamobj);
+        //hideEnemiesMenu();
+        //increase2 += 1.3f;
+        PlayerPrefs.SetInt("Pickaxe", PlayerPrefs.GetInt("Pickaxe") - 1); 
+    }
+
+    public void instantiateCrystalBlue()
+    {
+        Items[1].SetActive(true);
+        //GameObject gamobj = Instantiate(Items[1], new Vector3(Items[0].transform.position.x + increase2, Items[0].transform.position.y, Items[0].transform.position.z), Items[0].transform.rotation);
+        //gamobj.transform.parent = GameObject.Find("Miners").transform;
+        //gamobj.GetComponent<ResouresePosition>().rowResourses = BlueResourses;
+        //GaurdsArr.Add(gamobj);
+        //hideEnemiesMenu();
+        //increase2 += 1.3f;
+
+        PlayerPrefs.SetInt("Pickaxe", PlayerPrefs.GetInt("Pickaxe") - 1);
+    }
+
+    public void instantiateIron()
+    {
+        Items[2].SetActive(true);
+        //GameObject gamobj = Instantiate(Items[2]);
+        //gamobj.transform.parent = GameObject.Find("Miners").transform;
+        //gamobj.GetComponent<ResouresePosition>().rowResourses = IronResourses;
+        //GaurdsArr.Add(gamobj);
+        //hideEnemiesMenu();
+        //increase2 += 1.3f;
+        PlayerPrefs.SetInt("Pickaxe", PlayerPrefs.GetInt("Pickaxe") - 1);
+
+    }
+
+    public void instantiateGold()
+    {
+        Items[3].SetActive(true);
+        //GameObject gamobj = Instantiate(Items[3]);
+        //gamobj.transform.parent = GameObject.Find("Miners").transform;
+        //gamobj.GetComponent<ResouresePosition>().rowResourses = GoldResourses;
+        //GaurdsArr.Add(gamobj);
+        //hideEnemiesMenu();
+        //increase2 += 1.3f;
+        PlayerPrefs.SetInt("Pickaxe", PlayerPrefs.GetInt("Pickaxe") - 1);
+    }
+
+    public void instantiateTreeCutter()
+    {
+        if (Items[9].active)
+        {
+            Items[4].SetActive(true);
+        }
+        else
+        {
+            SSTools.ShowMessage("you must build a Repository First", SSTools.Position.top, SSTools.Time.threeSecond);
+        }
+    }
+
     public void instantiateGuard()
     {
         GameObject gamobj = Instantiate(Items[8], new Vector3(Items[8].transform.position.x + increase2, Items[8].transform.position.y, Items[8].transform.position.z), Items[8].transform.rotation);
@@ -230,7 +436,7 @@ public class UiManager : MonoBehaviour
 
     public void instantiateGuard2()
     {
-        
+
         if (PlayerPrefs.GetInt("Hammers") > 0 && PlayerPrefs.GetInt("Shields") > 0)
         {
             GameObject gamobj = Instantiate(Items[6], new Vector3(Items[6].transform.position.x + increase2, Items[6].transform.position.y, Items[6].transform.position.z), Items[6].transform.rotation);
@@ -246,64 +452,53 @@ public class UiManager : MonoBehaviour
             SSTools.ShowMessage("Need Weapans !!", SSTools.Position.top, SSTools.Time.threeSecond);
         }
     }
-    #endregion
 
-
-    #region active Miners
-    public void instantiateCrystalRed()
-    {
-        
-        GameObject gamobj = Instantiate(Items[0], new Vector3(Items[0].transform.position.x + increase2, Items[0].transform.position.y, Items[0].transform.position.z), Items[0].transform.rotation);
-        gamobj.transform.parent = GameObject.Find("Miners").transform;
-        gamobj.GetComponent<ResouresePosition>().rowResourses = RedResourses;
-        //GaurdsArr.Add(gamobj);
-        //hideEnemiesMenu();
-        increase2 += 1.3f;
-        PlayerPrefs.SetInt("Pickaxe", PlayerPrefs.GetInt("Pickaxe") - 1); 
-    }
-    public void instantiateCrystalBlue()
-    {
-        GameObject gamobj = Instantiate(Items[0], new Vector3(Items[0].transform.position.x + increase2, Items[0].transform.position.y, Items[0].transform.position.z), Items[0].transform.rotation);
-        gamobj.transform.parent = GameObject.Find("Miners").transform;
-        gamobj.GetComponent<ResouresePosition>().rowResourses = BlueResourses;
-        //GaurdsArr.Add(gamobj);
-        //hideEnemiesMenu();
-        increase2 += 1.3f;
-        PlayerPrefs.SetInt("Pickaxe", PlayerPrefs.GetInt("Pickaxe") - 1);
-    }
-    public void instantiateIron()
-    {
-        GameObject gamobj = Instantiate(Items[0], new Vector3(Items[0].transform.position.x + increase2, Items[0].transform.position.y, Items[0].transform.position.z), Items[0].transform.rotation);
-        gamobj.transform.parent = GameObject.Find("Miners").transform;
-        gamobj.GetComponent<ResouresePosition>().rowResourses = IronResourses;
-        //GaurdsArr.Add(gamobj);
-        //hideEnemiesMenu();
-        increase2 += 1.3f;
-        PlayerPrefs.SetInt("Pickaxe", PlayerPrefs.GetInt("Pickaxe") - 1);
-
-    }
-    public void instantiateGold()
-    {
-        GameObject gamobj = Instantiate(Items[0], new Vector3(Items[0].transform.position.x + increase2, Items[0].transform.position.y, Items[0].transform.position.z), Items[0].transform.rotation);
-        gamobj.transform.parent = GameObject.Find("Miners").transform;
-        gamobj.GetComponent<ResouresePosition>().rowResourses = GoldResourses;
-        //GaurdsArr.Add(gamobj);
-        //hideEnemiesMenu();
-        increase2 += 1.3f;
-        PlayerPrefs.SetInt("Pickaxe", PlayerPrefs.GetInt("Pickaxe") - 1);
-    }
-
-    public void instantiatetree()
-    {
-        if (Items[9].active)
+    public void instantiateEnemy()
+    {/*
+        if (Items[11].active)
         {
-            Items[4].SetActive(true);
-        }
-        else
-        {
-            SSTools.ShowMessage("you must build a Repository First", SSTools.Position.top, SSTools.Time.threeSecond);
-        }
+            */
+        GameObject gamobj = Instantiate(Items[7], new Vector3(Items[7].transform.position.x + increase1, Items[7].transform.position.y, Items[7].transform.position.z), Items[7].transform.rotation);
+        gamobj.transform.parent = GameObject.Find("Enemies").transform;
+        EnemeisArr.Add(gamobj);
+        //hideEnemiesMenu();
+        increase1 += 1.3f;
+        /*
     }
+    else
+    {
+        SSTools.ShowMessage("you must build a Hospital before fighting", SSTools.Position.top, SSTools.Time.threeSecond);
+
+    }*/
+
+    }
+
+    public void instantiateRedCollector()
+    {
+        Items[13].SetActive(true);
+    }
+
+    public void instantiateBlueCollector()
+    {
+        Items[14].SetActive(true);
+    }
+
+    public void instantiateIronCollector()
+    {
+        Items[15].SetActive(true);
+    }
+
+    public void instantiateGoldCollector()
+    {
+        Items[16].SetActive(true);
+    }
+
+    public void instantiateTreeCollector()
+    {
+        Items[17].SetActive(true);
+    }
+
+
     #endregion
 
 
@@ -445,7 +640,6 @@ public class UiManager : MonoBehaviour
         }
     }
 
-
     public void instantiateCitizens()
     {
         if (Items[19].active)
@@ -468,14 +662,6 @@ public class UiManager : MonoBehaviour
         {
             SSTools.ShowMessage("create shiltter", SSTools.Position.top, SSTools.Time.threeSecond);
         }
-    }
-    void activeCollectors()
-    {
-        Items[13].SetActive(true);
-        Items[14].SetActive(true);
-        Items[15].SetActive(true);
-        Items[16].SetActive(true);
-        Items[17].SetActive(true);
     }
 
     public void ExitGame()

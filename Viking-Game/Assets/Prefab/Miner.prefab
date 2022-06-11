@@ -4675,7 +4675,7 @@ GameObject:
   - component: {fileID: 8682430592626887920}
   - component: {fileID: 8682430592626887921}
   m_Layer: 0
-  m_Name: MinerRedCrystal
+  m_Name: Miner
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

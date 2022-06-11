@@ -33,8 +33,7 @@ public class moveCitizen : MonoBehaviour
         {
             moveToWeapensMaker();
         }
-            
-        
+
     }
 
     public void moveToWeapensMaker()
@@ -59,31 +58,57 @@ public class moveCitizen : MonoBehaviour
 
         if (collision.gameObject.tag == "WeapansMaker")
         {
+            UiManager uiManager = GameObject.Find("EventSystem").GetComponent<UiManager>();
             switch (characterType) {
                 case "gaurd1":
-                    GameObject.Find("EventSystem").GetComponent<UiManager>().instantiateGuard();
+                    uiManager.instantiateGuard();
                     Destroy(gameObject);
                     break;
                 case "gaurd2":
-                    GameObject.Find("EventSystem").GetComponent<UiManager>().instantiateGuard2();
+                    uiManager.instantiateGuard2();
                     Destroy(gameObject);
                     break;
                 case "MinerRedCrystal":
-                    GameObject.Find("EventSystem").GetComponent<UiManager>().instantiateCrystalRed();
+                    uiManager.instantiateCrystalRed();
                     Destroy(gameObject);
                     break;
                 case "MinerBlueCrystal":
-                    GameObject.Find("EventSystem").GetComponent<UiManager>().instantiateCrystalBlue();
+                    uiManager.instantiateCrystalBlue();
                     Destroy(gameObject);
                     break;
                 case "MinerIron":
-                    GameObject.Find("EventSystem").GetComponent<UiManager>().instantiateIron();
+                    uiManager.instantiateIron();
                     Destroy(gameObject);
                     break;
                 case "MinerGold":
-                    GameObject.Find("EventSystem").GetComponent<UiManager>().instantiateGold();
+                   uiManager.instantiateGold();
                     Destroy(gameObject);
                     break;
+                case "TreeCutter":
+                    uiManager.instantiateTreeCutter();
+                    Destroy(gameObject);
+                    break;
+                case "RedCollector":
+                    uiManager.instantiateRedCollector();
+                    Destroy(gameObject);
+                    break;
+                case "BlueCollector":
+                    uiManager.instantiateBlueCollector();
+                    Destroy(gameObject);
+                    break;
+                case "IronCollector":
+                    uiManager.instantiateIronCollector();
+                    Destroy(gameObject);
+                    break;
+                case "GoldCutter":
+                    uiManager.instantiateGoldCollector();
+                    Destroy(gameObject);
+                    break;
+                case "TreeCollector":
+                    uiManager.instantiateTreeCollector();
+                    Destroy(gameObject);
+                    break;
+
             }
 
             
