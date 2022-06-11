@@ -553,7 +553,7 @@ public class UiManager : MonoBehaviour
             if (!Items[9].active)
             {
                 Items[9].SetActive(true);
-                activeCollectors();
+                //activeCollectors();
                 PlayerPrefs.SetInt("Trees", PlayerPrefs.GetInt("Trees") - 100);
                 //hideMinersMenu();
             }
