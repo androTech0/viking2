@@ -32,14 +32,14 @@ public class UiManager : MonoBehaviour
 
     /*
     
-    0 - minerCrystalRed,
-    1 - minerCrystalBlue,
-    2 - minerIron,
-    3 - minerGold,
-    4 - treeCutter,
-    5 - --,
-    6 - Gaurd2,
-    7 - enemy 1,
+    0 - minerCrystalRed
+    1 - minerCrystalBlue
+    2 - minerIron
+    3 - minerGold
+    4 - treeCutter
+    5 - --
+    6 - Gaurd2
+    7 - enemy 1
     8 - Gaurd1
     9 - repositry1
     10 - repositry2
@@ -54,8 +54,6 @@ public class UiManager : MonoBehaviour
     19 - shiltter 1
     20 - shiltter 2
     21 - citizen
-
-
     */
 
     [SerializeField]
