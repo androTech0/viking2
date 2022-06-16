@@ -47,7 +47,9 @@ public class Collect_Items : MonoBehaviour
             case "Gold":
                 itemsToCollect = GameObject.Find("EventSystem").GetComponent<UiManager>().goldToCollect;
                 break;
-
+            case "Trees":
+                itemsToCollect = GameObject.Find("EventSystem").GetComponent<UiManager>().treeToCollect;
+                break;
         }
 
         if (itemsToCollect.Count > 0 && index < itemsToCollect.Count && !pickedUp)
@@ -58,14 +60,14 @@ public class Collect_Items : MonoBehaviour
             }
             else
             {
-                transform.position = Vector3.MoveTowards(transform.position, itemsToCollect[index].transform.position, speed * Time.deltaTime);
+                transform.position = Vector3.MoveTowards(transform.position,new Vector3(itemsToCollect[index].transform.position.x, 0.5f, itemsToCollect[index].transform.position.z) , speed * Time.deltaTime);
             }
         }
         else if (pickedUp)
         {
             if (back)
             {
-                transform.position = Vector3.MoveTowards(transform.position, Repository.transform.position, speed * Time.deltaTime);
+                transform.position = Vector3.MoveTowards(transform.position,new Vector3(Repository.transform.position.x, 0.5f, Repository.transform.position.z), speed * Time.deltaTime);
                 itemsToCollect[index].transform.position = Vector3.MoveTowards(itemsToCollect[index].transform.position, transform.position, speed * Time.deltaTime);
 
             }
@@ -128,7 +130,7 @@ public class Collect_Items : MonoBehaviour
                         }
                         );
                         break;
-                    case "Tree":
+                    case "Trees":
                         GameObject.Find("EventSystem").GetComponent<UiManager>().treeToCollect.Clear();
                         GameObject.Find("EventSystem").GetComponent<UiManager>().TreeResources.ForEach(Obj =>
                         {

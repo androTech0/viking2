@@ -21,7 +21,7 @@ public class UiManager : MonoBehaviour
     
     public List<Transform> RedResourses, BlueResourses, IronResourses, GoldResourses, TreeResources = new List<Transform>();
 
-    public List<Transform> redToCollect, blueToCollect, ironToCollect, goldToCollect, treeToCollect = new List<Transform>();
+    public List<Transform> redToCollect, blueToCollect, ironToCollect, goldToCollect, treeToCollect,lastPos = new List<Transform>();
 
 
     float swordCounter = 5f;
@@ -361,7 +361,7 @@ public class UiManager : MonoBehaviour
         gamobj.GetComponent<ResouresePosition>().rowResourses = RedResourses;
         gamobj.GetComponent<ResouresePosition>().toInstantiate = ItemsToInstantiate[0];
         gamobj.GetComponent<ResouresePosition>().type = "red";
-
+        gamobj.GetComponent<ResouresePosition>().lastt = lastPos[0];
 
         //hideEnemiesMenu();
         increase2 += 1.3f;
@@ -376,6 +376,8 @@ public class UiManager : MonoBehaviour
         gamobj.GetComponent<ResouresePosition>().rowResourses = BlueResourses;
         gamobj.GetComponent<ResouresePosition>().toInstantiate = ItemsToInstantiate[1];
         gamobj.GetComponent<ResouresePosition>().type = "blue";
+        gamobj.GetComponent<ResouresePosition>().lastt = lastPos[1];
+
         //hideEnemiesMenu();
         increase2 += 1.3f;
 
@@ -390,6 +392,7 @@ public class UiManager : MonoBehaviour
         gamobj.GetComponent<ResouresePosition>().rowResourses = IronResourses;
         gamobj.GetComponent<ResouresePosition>().toInstantiate = ItemsToInstantiate[2];
         gamobj.GetComponent<ResouresePosition>().type = "iron";
+        gamobj.GetComponent<ResouresePosition>().lastt = lastPos[2];
         //hideEnemiesMenu();
         increase2 += 1.3f;
         PlayerPrefs.SetInt("Pickaxe", PlayerPrefs.GetInt("Pickaxe") - 1);
@@ -404,6 +407,8 @@ public class UiManager : MonoBehaviour
         gamobj.GetComponent<ResouresePosition>().rowResourses = GoldResourses;
         gamobj.GetComponent<ResouresePosition>().toInstantiate = ItemsToInstantiate[3];
         gamobj.GetComponent<ResouresePosition>().type = "gold";
+        gamobj.GetComponent<ResouresePosition>().lastt = lastPos[3];
+
         //hideEnemiesMenu();
         increase2 += 1.3f;
         PlayerPrefs.SetInt("Pickaxe", PlayerPrefs.GetInt("Pickaxe") - 1);
@@ -417,19 +422,12 @@ public class UiManager : MonoBehaviour
         gamobj.GetComponent<ResouresePosition>().rowResourses = TreeResources;
         gamobj.GetComponent<ResouresePosition>().toInstantiate = ItemsToInstantiate[4];
         gamobj.GetComponent<ResouresePosition>().type = "tree";
+        gamobj.GetComponent<ResouresePosition>().lastt = lastPos[4];
+
         //hideEnemiesMenu();
         increase2 += 1.3f;
         PlayerPrefs.SetInt("Pickaxe", PlayerPrefs.GetInt("Pickaxe") - 1);
 
-        /*
-        if (Items[9].active)
-        {
-            Items[4].SetActive(true);
-        }
-        else
-        {
-            SSTools.ShowMessage("you must build a Repository First", SSTools.Position.top, SSTools.Time.threeSecond);
-        }*/
     }
 
     public void instantiateGuard()
