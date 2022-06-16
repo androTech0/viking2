@@ -41,19 +41,37 @@ public class ResouresePosition : MonoBehaviour
 
         if (rowResourses.Count > 0 )
         {
-
-            if (rowResourses[index].transform.gameObject.active) {
-                
-                speed = 7f;
-                transform.position = Vector3.MoveTowards(transform.position,new Vector3(rowResourses[index].transform.position.x,0.5f, rowResourses[index].transform.position.z ) , speed * Time.deltaTime);
-                Quaternion desRotation = Quaternion.LookRotation(rowResourses[index].transform.position - transform.position);
-                transform.rotation = Quaternion.RotateTowards(transform.rotation, Quaternion.Euler(0, desRotation.eulerAngles.y, 0), 1500 * Time.deltaTime);
-
-                if (!isMinning)
+            if (index != 0) {
+                if (rowResourses[index].transform.gameObject.active && !rowResourses[index - 1].transform.gameObject.active)
                 {
-                    animator.SetBool("forword", true);
+
+                    speed = 7f;
+                    transform.position = Vector3.MoveTowards(transform.position, new Vector3(rowResourses[index].transform.position.x, 0.5f, rowResourses[index].transform.position.z), speed * Time.deltaTime);
+                    Quaternion desRotation = Quaternion.LookRotation(rowResourses[index].transform.position - transform.position);
+                    transform.rotation = Quaternion.RotateTowards(transform.rotation, Quaternion.Euler(0, desRotation.eulerAngles.y, 0), 1500 * Time.deltaTime);
+
+                    if (!isMinning)
+                    {
+                        animator.SetBool("forword", true);
+                    }
+                }
+            } 
+            else if (index ==0) {
+                if (rowResourses[index].transform.gameObject.active)
+                {
+
+                    speed = 7f;
+                    transform.position = Vector3.MoveTowards(transform.position, new Vector3(rowResourses[index].transform.position.x, 0.5f, rowResourses[index].transform.position.z), speed * Time.deltaTime);
+                    Quaternion desRotation = Quaternion.LookRotation(rowResourses[index].transform.position - transform.position);
+                    transform.rotation = Quaternion.RotateTowards(transform.rotation, Quaternion.Euler(0, desRotation.eulerAngles.y, 0), 1500 * Time.deltaTime);
+
+                    if (!isMinning)
+                    {
+                        animator.SetBool("forword", true);
+                    }
                 }
             }
+            
             
         }
 

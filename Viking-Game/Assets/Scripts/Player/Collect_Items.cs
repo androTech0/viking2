@@ -36,7 +36,7 @@ public class Collect_Items : MonoBehaviour
     {
         switch (nameOfResourses) {
             case "RedCrystals":
-            itemsToCollect = GameObject.Find("EventSystem").GetComponent<UiManager>().redToCollect;
+                itemsToCollect = GameObject.Find("EventSystem").GetComponent<UiManager>().redToCollect;
                 break;
             case "BlueCrystals":
                 itemsToCollect = GameObject.Find("EventSystem").GetComponent<UiManager>().blueToCollect;
@@ -56,10 +56,14 @@ public class Collect_Items : MonoBehaviour
         {
             if (go)
             {
+                animator.SetBool("Minning", false);
+                animator.SetBool("forword", true);
                 transform.position = Vector3.MoveTowards(transform.position, Path.position, speed * Time.deltaTime);
             }
             else
             {
+                animator.SetBool("Minning", false);
+                animator.SetBool("forword", true);
                 transform.position = Vector3.MoveTowards(transform.position,new Vector3(itemsToCollect[index].transform.position.x, 0.5f, itemsToCollect[index].transform.position.z) , speed * Time.deltaTime);
             }
         }
@@ -67,12 +71,16 @@ public class Collect_Items : MonoBehaviour
         {
             if (back)
             {
+                animator.SetBool("Minning", false);
+                animator.SetBool("forword", true);
                 transform.position = Vector3.MoveTowards(transform.position,new Vector3(Repository.transform.position.x, 0.5f, Repository.transform.position.z), speed * Time.deltaTime);
                 itemsToCollect[index].transform.position = Vector3.MoveTowards(itemsToCollect[index].transform.position, transform.position, speed * Time.deltaTime);
 
             }
             else
             {
+                animator.SetBool("Minning", false);
+                animator.SetBool("forword", true);
                 transform.position = Vector3.MoveTowards(transform.position, Path.position, speed * Time.deltaTime);
             }
         }
@@ -159,6 +167,8 @@ public class Collect_Items : MonoBehaviour
         if (collision.gameObject.tag == "Collectables")
         {
             pickedUp = true;
+            animator.SetBool("Minning", true);
+            animator.SetBool("forword", false);
 
         }
 
